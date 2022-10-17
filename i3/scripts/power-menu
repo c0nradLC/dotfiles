@@ -1,0 +1,19 @@
+#!/bin/sh
+lock_option="Lock screen"
+reboot_option="Reboot"
+poweroff_option="Poweroff"
+
+exec 3>&1
+option=$(bsddialog --menu "Power menu" 10 50 0 "$lock_option" '' "$reboot_option" '' "$poweroff_option" '' 2>&1 1>&3)
+
+case $option in
+	$lock_option)
+	~/.config/i3/scripts/blur-lock;;
+	$reboot_option)
+	#Need to pass the command just like it is defined in /usr/local/etc/doas.conf
+	# which is the full path, same for poweroff
+	doas /sbin/reboot;;
+	$poweroff_option)
+	doas /sbin/poweroff;;
+esac
+$SHELL
