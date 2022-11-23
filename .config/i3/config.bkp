@@ -56,8 +56,6 @@ new_window pixel 1
 gaps inner 6
 gaps outer 3
 
-# Set window border radius
-border_radius 4 
 
 # show window title bars (not officially supported with i3gaps)
 #default_border normal
