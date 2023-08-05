@@ -57,7 +57,7 @@ gaps inner 6
 gaps outer 3
 
 # Set window border radius
-border_radius 4 
+#border_radius 1
 
 # show window title bars (not officially supported with i3gaps)
 #default_border normal
@@ -174,7 +174,7 @@ bindsym $mod+r mode "resize"
 ######################################
 
 # start a terminal
-bindsym $mod+Return exec xfce4-terminal
+bindsym $mod+Return exec --no-startup-id xfce4-terminal
 
 # kill focused window
 bindsym $mod+q kill
@@ -342,10 +342,10 @@ for_window [class=TelegramDesktop] focus
 # For modifications, it can be copied to ~/.config/picom/picom.conf or ~/.config/picom.conf
 #
 # using default config 
-#exec_always --no-startup-id picom -b
+exec_always --no-startup-id picom -b
 #
 # for custom config:
-#exec_always --no-startup-id picom --config  ~/.config/picom.conf
+#exec_always --no-startup-id picom --config ~/.config/picom.conf
 
 #############################################
 # autostart applications/services on login: #
@@ -379,7 +379,7 @@ exec --no-startup-id dex --autostart --environment i3
 exec --no-startup-id ~/.screenlayout/monitor.sh
 
 # set wallpaper
-exec --no-startup-id sleep 2 && nitrogen --restore
+exec --no-startup-id nitrogen --restore
 #exec --no-startup-id feh --bg-fill /usr/share/endeavouros/backgrounds/endeavouros_i3.png
 
 # set powersavings for display:
@@ -552,8 +552,8 @@ client.urgent		    	$urgentred	$urgentred	$white		$yellowbrown	$yellowbrown
 
 ## rofi bindings fancy application menu ($mod+d /F9 optional disabled)
 
-bindsym $mod+d exec rofi -modi drun -show drun \
-		-config ~/.config/rofi/rofikeyhint.rasi
+bindsym $mod+d exec rofi -show run \
+		#-config ~/.config/rofi/profiles/chiefdinkan/.rasi
 
 #bindsym F9 exec rofi -modi drun -show drun \
 #		-config ~/.config/rofi/rofidmenu.rasi
@@ -581,6 +581,13 @@ exec --no-startup-id $HOME/.config/xrandr/launch.sh
 #Start NetworkManager applet
 exec --no-startup-id nm-applet
 
+#Redshift-gtk
+exec --no-startup-id redshift-gtk
+
 # move focused workspace between monitors
 bindsym $mod+Ctrl+greater move workspace to output right
 bindsym $mod+Ctrl+less move workspace to output left
+
+
+# Calendar popup
+for_window [class="Yad" title="yad-calendar"] floating enable
